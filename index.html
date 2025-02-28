@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery and AngularJS Examples</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    /* Basic CSS Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      margin: 20px;
+      transition: margin-left 0.5s;
+    }
+
+    .content {
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin: 10px 0;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    .paragraph-container {
+      height: 50px; /* Fixed height to prevent layout shift */
+      margin: 10px 0;
+    }
+
+    p {
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 0;
+    }
+
+    #hoverDiv {
+      text-align: center;
+      line-height: 100px;
+      color: white;
+    }
+
+    input[type="text"], input[type="number"] {
+      padding: 8px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- jQuery Examples -->
+  <h2>jQuery Examples</h2>
+
+  <!-- Hide and Show Paragraph -->
+  <button id="hideButton">Hide Paragraph</button>
+  <button id="showButton">Show Paragraph</button>
+  <div class="paragraph-container">
+    <p id="paragraph1">This is a paragraph to hide and show.</p>
+  </div>
+
+  <!-- Toggle Paragraph -->
+  <button id="toggleButton">Toggle Paragraph</button>
+  <div class="paragraph-container">
+    <p id="paragraph2">This paragraph will toggle on button click.</p>
+  </div>
+
+  <!-- Change Text Color -->
+  <button id="colorButton">Change Text Color</button>
+  <div class="paragraph-container">
+    <p id="paragraph3">This text will change color on button click.</p>
+  </div>
+
+  <!-- Move Box to Right -->
+  <button id="moveButton">Move Box to Right</button>
+  <div id="box" class="box"></div>
+
+  <!-- Fade In and Out -->
+  <button id="fadeButton">Fade Paragraph</button>
+  <div class="paragraph-container">
+    <p id="paragraph4">This paragraph will fade in and out.</p>
+  </div>
+
+  <!-- Slide Up and Down -->
+  <button id="slideButton">Slide Toggle</button>
+  <div id="slideContent" class="content">
+    This content will slide up and down.
+  </div>
+
+  <!-- Update Paragraph Text -->
+  <button id="updateTextButton">Update Paragraph Text</button>
+  <div class="paragraph-container">
+    <p id="paragraph5">Original text.</p>
+  </div>
+
+  <!-- Change Background Color on Hover -->
+  <div id="hoverDiv" class="box">Hover over me!</div>
+
+  <!-- Display Input Value -->
+  <input type="text" id="inputField" placeholder="Enter text">
+  <button id="showValueButton">Show Input Value</button>
+  <div class="paragraph-container">
+    <p id="inputValue"></p>
+  </div>
+
+  <!-- AngularJS Examples -->
+  <h2>AngularJS Examples</h2>
+  <div ng-app="myApp" ng-controller="myCtrl">
+    <!-- Input and Output Binding -->
+    <input type="text" ng-model="inputText">
+    <p>Output: {{ inputText }}</p>
+
+    <!-- Simple Calculator -->
+    <input type="number" ng-model="num1">
+    <input type="number" ng-model="num2">
+    <button ng-click="calculate()">Calculate</button>
+    <p>Result: {{ result }}</p>
+
+    <!-- Show/Hide Content -->
+    <button ng-click="toggleContent()">Toggle Content</button>
+    <div ng-show="showContent" class="content">
+      This content is shown/hidden using ng-show.
+    </div>
+
+    <!-- Background Color Changer -->
+    <button ng-click="changeColor()">Change Background Color</button>
+    <div ng-style="{'background-color': bgColor}" class="box">
+      Background color changes here.
+    </div>
+
+    <!-- Simple Stopwatch -->
+    <button ng-click="startStopwatch()">Start Stopwatch</button>
+    <button ng-click="stopStopwatch()">Stop Stopwatch</button>
+    <p>Stopwatch: {{ stopwatch }} seconds</p>
+  </div>
+
+  <script>
+    // jQuery Code
+    $(document).ready(function() {
+      // Hide and Show Paragraph
+      $("#hideButton").click(function() {
+        $("#paragraph1").hide();
+      });
+
+      $("#showButton").click(function() {
+        $("#paragraph1").show();
+      });
+
+      // Toggle Paragraph
+      $("#toggleButton").click(function() {
+        $("#paragraph2").toggle();
+      });
+
+      // Change Text Color
+      $("#colorButton").click(function() {
+        $("#paragraph3").css("color", "blue");
+      });
+
+      // Move Box to Right
+      $("#moveButton").click(function() {
+        $("#box").animate({ marginLeft: "+=50px" }, "slow");
+      });
+
+      // Fade In and Out
+      $("#fadeButton").click(function() {
+        $("#paragraph4").fadeToggle();
+      });
+
+      // Slide Up and Down
+      $("#slideButton").click(function() {
+        $("#slideContent").slideToggle();
+      });
+
+      // Update Paragraph Text
+      $("#updateTextButton").click(function() {
+        $("#paragraph5").text("Updated text!");
+      });
+
+      // Change Background Color on Hover
+      $("#hoverDiv").hover(
+        function() {
+          $(this).css("background-color", "green");
+        },
+        function() {
+          $(this).css("background-color", "red");
+        }
+      );
+
+      // Display Input Value
+      $("#showValueButton").click(function() {
+        const inputValue = $("#inputField").val();
+        $("#inputValue").text(inputValue);
+      });
+    });
+
+    // AngularJS Code
+    const app = angular.module("myApp", []);
+    app.controller("myCtrl", function($scope, $interval) {
+      // Input and Output Binding
+      $scope.inputText = "";
+
+      // Simple Calculator
+      $scope.num1 = 0;
+      $scope.num2 = 0;
+      $scope.result = 0;
+
+      $scope.calculate = function() {
+        $scope.result = $scope.num1 + $scope.num2;
+      };
+
+      // Show/Hide Content
+      $scope.showContent = true;
+
+      $scope.toggleContent = function() {
+        $scope.showContent = !$scope.showContent;
+      };
+
+      // Background Color Changer
+      $scope.bgColor = "yellow";
+
+      $scope.changeColor = function() {
+        $scope.bgColor = $scope.bgColor === "yellow" ? "cyan" : "yellow";
+      };
+
+      // Simple Stopwatch
+      $scope.stopwatch = 0;
+      let stopwatchInterval;
+
+      $scope.startStopwatch = function() {
+        stopwatchInterval = $interval(function() {
+          $scope.stopwatch++;
+        }, 1000);
+      };
+
+      $scope.stopStopwatch = function() {
+        $interval.cancel(stopwatchInterval);
+      };
+    });
+  </script>
+</body>
+</html>
